@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block title %}Home - IGIHOZO Feedus{% endblock %}
+{% block content %}
+    <div class="relative md:pt-32 bg-yellow-50 bg-[url('https://tailus.io/sources/blocks/food-delivery/preview/images/food.webp')] bg-contain bg-no-repeat bg-right">
+        <div class="">
+            <div class="flex w-full items-center flex-col px-2 md:px-0">
+            <div class="container flex flex-col justify-center mx-auto">
+                    <h1 class="font-bold text-3xl text-yellow-900 md:text-4xl ">Craving your favorites?<br> We'll bring them to your door!</h1>
+                    <form action="" class="flex mt-12">
+                        <div class="relative flex flex-wrap p-1 gap-2 rounded-full bg-white border border-yellow-200 shadow-md md:p-2">
+                            <label for="domain">
+                                <select class="hidden p-2 rounded-full bg-transparent md:block md:p-3 md:px-5" name="domain" id="domain">
+                                    {% for branch in branches %}
+                                        <option value="{{ branch.location }}">{{ branch.location }}</option>
+                                    {% endfor %}
+                                </select>
+                            </label>
+                            <label>
+                                <input placeholder="Your favorite food" class="border-0 rounded-md w-full" type="text">
+                            </label>
+                            <button type="button" title="Start buying" class="ml-auto py-3 px-6 rounded-full text-center transition bg-gradient-to-b from-yellow-200 to-yellow-300 hover:to-red-300 active:from-yellow-400 focus:from-red-400 md:px-12">
+                                <span class="hidden text-yellow-900 font-semibold md:block">
+                                    Search
+                                </span>
+                            </button>
+                        </div>
+                    </form>
+                    <p class="mt-8 text-gray-700 md:max-w-[50%] text-justify">
+                        Experience the ultimate convenience with our Food Delivery Management System. Whether you're craving a quick snack or a full meal, we ensure your favorite dishes are delivered hot and fresh, right to your doorstep. Browse a variety of delicious options, place your order with ease, and enjoy fast, reliable service—all from the comfort of your home
+                    </p>
+                </div>
+                <h2 class="container py-2 flex justify-start"><span class="text-2xl font-bold text-yellow-900">Available <span class="text-yellow-700">Branches</span></span> </h2>
+                <div class="container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    {% for branch in branches %}
+                        <div class="relative flex w-full max-w-[26rem] flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-lg">
+                            <div class="relative mx-4 mt-4 overflow-hidden text-white shadow-lg rounded-xl bg-blue-gray-500 bg-clip-border shadow-blue-gray-500/40">
+                                <img
+                                        src="{{ branch.image }}"
+                                        alt="image_ranch" />
+                                <div class="absolute inset-0 w-full h-full to-bg-black-10 bg-gradient-to-tr from-transparent via-transparent to-black/60">
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center justify-between mb-3">
+                                    <h5 class="block font-sans text-xl antialiased font-medium leading-snug tracking-normal text-blue-gray-900">
+                                        {{ branch.restaurant }} 
+                                        {{branch.location}}
+                                    </h5>
+                                    <p class="flex items-center gap-1.5 font-sans text-base font-normal leading-relaxed text-blue-gray-900 antialiased">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                             class="-mt-0.5 h-5 w-5 text-yellow-700">
+                                            <path fill-rule="evenodd"
+                                                  d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
+                                                  clip-rule="evenodd"></path>
+                                        </svg>
+                                        5.0
+                                    </p>
+                                </div>
+                                <p class="block font-sans text-base antialiased font-light leading-relaxed text-gray-700">
+                                    {{branch.description}}
+                                </p>
+                            </div>
+                            <div class="p-6 pt-3">
+                                <a class="bg-amber-400" href="{% url 'branch_menus' branch.id %}">
+                                    <button class="block w-full select-none rounded-lg  py-3.5 px-7 text-yellow-900  text-center align-middle font-sans text-sm font-bold uppercase  shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none bg-gradient-to-b from-yellow-200 to-yellow-300 hover:to-red-300 active:from-yellow-400 focus:from-red-400" type="button">
+                                       Visit to see Menu
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
